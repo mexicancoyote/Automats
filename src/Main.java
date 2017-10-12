@@ -1,43 +1,41 @@
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 public class Main {
 
+    public static WebDriver driver;
 
-    public static void main(String[] args) {
-        Functions randomString = new Functions();
-        // Create a new instance of the FireFox driver
-        WebDriver driver = new FirefoxDriver();
+    public static void main(String[] args) throws InterruptedException{
+        driver = new FirefoxDriver();
+        Registration element = new Registration();
+        Functions generator = new Functions();
+        DriverInstance instance = new DriverInstance();
 
-        // Put an Implicit wait,
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        instance.openTemporaryMailPage();
+        instance.waitUntilMailPageLoad();
 
-        // Launch the URL
-        driver.get("http://demoqa.com/registration");
-        // Click 'Submit' button.
-        driver.findElement(By.name("pie_submit")).click();
-        // Fill out 'First Name'.
-        driver.findElement(By.id("name_3_firstname")).sendKeys(randomString.getString(10));
-        // Fill out 'Last Name'.
-        driver.findElement(By.id("name_3_lastname")).sendKeys(randomString.getString(1));
-        // Marks all option is check box
-        driver.findElement(By.name("checkbox_5[]")).click();
-        // Fill out 'Phone Number'
-        driver.findElement(By.id("phone_9")).sendKeys(randomString.getNumber(10));
-        // Fill out 'Username'
-        driver.findElement(By.id("username")).sendKeys(randomString.getString(10));
-        // Fill out 'E-mail'
-        driver.findElement(By.id("email_1")).sendKeys(randomString.getEmailAdress(5));
-        // Fill out 'Password' + 'Confirm Password'
-        driver.findElement(By.id("password_2")).sendKeys(randomString.getPassword(20));
+        String temporaryMail = element.getTemporaryMail().getAttribute("value");
+
+        instance.openTestingPage();
+        instance.waitUntilTestingPageLoad();
 
 
+        element.getSubmitButton().click();
+        element.getFirstName().sendKeys(generator.getRandomString(25));
+        element.getLastName().sendKeys(generator.getRandomString(25));
+        generator.randomCheckboxClick(element.getHobby());
+        element.getPhoneNumber().sendKeys(generator.getRandomNumber(10));
+        element.getUsername().sendKeys(generator.getRandomString(10));
+        element.getEMail().sendKeys(temporaryMail);
+        String randomPass = generator.getRandomPassword(15);
+        element.getPassword().sendKeys(randomPass);
+        element.getConfirmPassword().sendKeys(randomPass);
+        element.getSubmitButton().click();
 
-
+        String cycki = element.getMessage().getText();
+        generator.happyPathFunctionality(cycki);
 
 
     }
 }
-
