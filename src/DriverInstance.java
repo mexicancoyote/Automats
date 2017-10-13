@@ -1,13 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class DriverInstance {
     public WebDriver driver;
@@ -18,15 +12,11 @@ public class DriverInstance {
         this.driver = Main.driver;
     }
 
-    public void waitUntilTestingPageLoad() throws InterruptedException{
+
+    public void waitUntilPageLoad(By b) throws InterruptedException{
         //driver.manage().timeouts().pageLoadTimeout(15,TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("pie_submit")));
-    }
-    public void waitUntilMailPageLoad() throws InterruptedException{
-        //driver.manage().timeouts().pageLoadTimeout(15,TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("mail")));
+        wait.until(ExpectedConditions.elementToBeClickable(b));
     }
 
     public void openTestingPage (){

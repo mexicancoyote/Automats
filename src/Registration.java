@@ -17,11 +17,15 @@ public class Registration extends DriverInstance{
     public List<WebElement> getHobby(){
         return driver.findElements(By.name("checkbox_5[]"));
     }
-
+    public WebElement getCountry(){return driver.findElement(By.id("dropdown_7")); }
+    public WebElement getMonth(){return driver.findElement(By.id("mm_date_8")); }
+    public WebElement getDay(){return driver.findElement(By.id("dd_date_8")); }
+    public WebElement getYear(){return driver.findElement(By.id("yy_date_8")); }
     public WebElement getPhoneNumber(){
         return driver.findElement(By.id("phone_9"));
     }
 
+    public List<WebElement> getMaritalStatus (){return driver.findElements(By.name("radio_4[]")); }
 
     public WebElement getUsername(){
         return driver.findElement(By.id("username"));
