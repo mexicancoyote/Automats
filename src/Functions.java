@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -10,56 +9,63 @@ import java.util.Random;
 
 public class Functions {
 
+    /* This method generates random string with established length,
+     using variables from methods bellow.*/
+
+    public String stringGenerator (int x, String str) {
+        StringBuffer strb = new StringBuffer();
+        Random rnd = new Random();
+        while (strb.length() < x) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * str.length());
+            strb.append(str.charAt(index));
+        }
+        String saltStr = strb.toString();
+        return saltStr;
+    }
+    // This method passes specified letters to stringGenerator.
 
     protected String getRandomString(int x) {
         String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return randomString(x, str);
+        return stringGenerator(x, str);
     }
+    // This method passes all numbers to stringGenerator.
 
     protected String getRandomNumber(int x) {
         String str = "1234567890";
-        return randomString(x, str);
+        return stringGenerator(x, str);
     }
+    // This method passes specified letters, numbers and special characters to stringGenerator.
 
     public String getRandomPassword(int x) {
         String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*1234567890";
-        return randomString(x, str);
+        return stringGenerator(x, str);
 
     }
+
+    // This method generate random click on webelement from possible variants.
 
     public void randomClick(List<WebElement> elements) {
         Random random = new Random();
         int index = random.nextInt(elements.size());
         elements.get(index).click();
     }
+
+    // This method passes count of webelement size to randomClick.
+
     public void randomDropdownClick (WebElement element){
         Select oSelect = new Select(element);
         List<WebElement> oSize = oSelect.getOptions();
         randomClick(oSize);
     }
-    public String randomString(int x, String str) {
-        StringBuffer salt = new StringBuffer();
-        Random rnd = new Random();
-        while (salt.length() < x) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * str.length());
-            salt.append(str.charAt(index));
-        }
-        String saltStr = salt.toString();
-        return saltStr;
-    }
+    // This method copy specified string to clipboard.
 
-    public void happyPathFunctionality(String mess) {
-        if (mess.equals("Thank you for your registration")) {
-            System.out.println("Happy path works great ");
-        } else {
-            System.out.println("Something goes wrong");
-        }
-
-    }
     public void clipboardData (String string) throws AWTException {
         StringSelection stringSelection = new StringSelection(string);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
+
+    // This method paste declared string from clipboard to webelement.
+
     public void uploadUserPicture () throws AWTException {
         clipboardData("C:\\Users\\mex\\IdeaProjects\\Automats\\palczak.jpg");
         //native key strokes for CTRL, V and ENTER keys
@@ -72,5 +78,15 @@ public class Functions {
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
+    /* This method checks messege that displayes, after successful registration and
+     generates also proper message */
+
+    public void happyPathFunctionality(Boolean message) {
+        if (message==true) {
+            System.out.println("Happy path works great ");
+        } else {
+            System.out.println("Something goes wrong");
+        }
+    }
 
 }

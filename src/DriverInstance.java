@@ -11,13 +11,13 @@ public class DriverInstance {
     public DriverInstance() {
         this.driver = Main.driver;
     }
+    // This method checks page readiness.
 
-
-    public void waitUntilPageLoad(By b) throws InterruptedException{
-        //driver.manage().timeouts().pageLoadTimeout(15,TimeUnit.SECONDS);
+    public void waitUntilPageLoad(By id) throws InterruptedException{
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.elementToBeClickable(b));
+        wait.until(ExpectedConditions.elementToBeClickable(id));
     }
+    // These methods bellow opens pages.
 
     public void openTestingPage (){
         driver.get(demoqaURL);

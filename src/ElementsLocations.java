@@ -1,11 +1,11 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.List;
 
-public class Registration extends DriverInstance{
+public class ElementsLocations extends DriverInstance{
+
+    //These methods bellow gets webelements location.
 
     public WebElement getFirstName(){
         return driver.findElement(By.id("name_3_firstname"));
