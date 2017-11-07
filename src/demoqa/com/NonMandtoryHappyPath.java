@@ -1,3 +1,8 @@
+package demoqa.com;
+
+import Tolls.ElementsLocations;
+import Tolls.Functions;
+
 import java.awt.*;
 
 public class NonMandtoryHappyPath {

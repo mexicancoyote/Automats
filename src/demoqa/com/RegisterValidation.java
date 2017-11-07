@@ -1,6 +1,11 @@
+package demoqa.com;
+
+import Tolls.ElementsLocations;
+import Tolls.Functions;
+
 public class RegisterValidation {
 
-
+    //Method that clicks 'Submit' button and checks if proper after registration message is shown.
 
     public void register (){
         ElementsLocations element = new ElementsLocations();

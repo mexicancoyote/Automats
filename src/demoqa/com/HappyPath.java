@@ -1,3 +1,8 @@
+package demoqa.com;
+
+import Tolls.DriverInstance;
+import Tolls.ElementsLocations;
+import Tolls.Functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -5,6 +10,7 @@ public class HappyPath {
 
 
     public  void happyPath () throws InterruptedException{
+        String demoqaURL = "http://demoqa.com/registration/";
         Main.driver = new FirefoxDriver();
         ElementsLocations element = new ElementsLocations();
         Functions method = new Functions();
@@ -18,7 +24,7 @@ public class HappyPath {
 
 
         //Opens testing page, waits to load.
-        instance.openTestingPage();
+        instance.openTestingPage(demoqaURL);
         instance.waitUntilPageLoad(By.name("pie_submit"));
 
         //Clicks 'Submit' button so all the mandatory fields are shown.

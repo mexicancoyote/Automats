@@ -1,3 +1,5 @@
+package demoqa.com;
+
 import org.openqa.selenium.WebDriver;
 
 import java.awt.*;
@@ -12,8 +14,6 @@ public class Main {
         NonMandtoryHappyPath nonMandtoryHappyPath = new NonMandtoryHappyPath();
         happyPath.happyPath();
         nonMandtoryHappyPath.happyPathWithNonMandtoryField();
-
         confirm.register();
-
     }
 }

@@ -1,3 +1,6 @@
+package Tolls;
+
+import apart.pl.Main;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -11,6 +14,8 @@ public class Functions {
 
     /* This method generates random string with established length,
      using variables from methods bellow.*/
+    ElementsLocations element = new ElementsLocations();
+    DriverInstance instance = new DriverInstance();
 
     public String stringGenerator (int x, String str) {
         StringBuffer strb = new StringBuffer();
@@ -24,13 +29,13 @@ public class Functions {
     }
     // This method passes specified letters to stringGenerator.
 
-    protected String getRandomString(int x) {
+    public String getRandomString(int x) {
         String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return stringGenerator(x, str);
     }
     // This method passes all numbers to stringGenerator.
 
-    protected String getRandomNumber(int x) {
+    public String getRandomNumber(int x) {
         String str = "1234567890";
         return stringGenerator(x, str);
     }
@@ -88,5 +93,12 @@ public class Functions {
             System.out.println("Something goes wrong");
         }
     }
+    public String copyTempMail (){
+        String temporaryMail = element.getTemporaryMail().getAttribute("value");
+        return temporaryMail;
+    }
 
+    public void logOut (){
+        element.getLogOut().click();
+    }
 }
