@@ -1,26 +1,38 @@
 package apart.pl;
 
-import Tolls.DriverInstance;
-import Tolls.Functions;
+import Tools.DriverInstance;
+import Tools.Functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException, AWTException {
+    public static void main(String[] args) throws InterruptedException, AWTException, IOException {
         demoqa.com.Main.driver = new FirefoxDriver();
         Functions method = new Functions();
         DriverInstance instance = new DriverInstance();
         Register register = new Register();
         Loging loging = new Loging();
+        ChangeProfilesFields changeProfilesFields = new ChangeProfilesFields();
+        DeleteAccount deleteAccount = new DeleteAccount();
 
+        String transferMail = method.copyTempMail();
+        String transferPass = method.getRandomPassword(15);
 
-        register.register();
+        method.addMailPassToFile(transferMail, transferPass);
+
+        register.register(transferMail, transferPass);
         instance.waitUntilPageLoad(By.id("more-secondrow"));
         method.logOut();
-        loging.loging();
+        loging.loging(transferMail, transferPass);
+        changeProfilesFields.changeProfileFields();
+        deleteAccount.deleteAccount();
+        method.getMailPassFromFile();
+
+
 
 
 

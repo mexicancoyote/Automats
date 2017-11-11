@@ -1,25 +1,19 @@
 package apart.pl;
 
-import Tolls.DriverInstance;
-import Tolls.ElementsLocations;
-import Tolls.Functions;
-import demoqa.com.Main;
+import Tools.DriverInstance;
+import Tools.ElementsLocations;
+import Tools.Functions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.io.IOException;
 
 public class Register {
 
-    public void register() throws InterruptedException {
+    public void register(String transferMail, String transferPass) throws InterruptedException{
         String apartUrl = "https://www.apart.pl/bizuteria";
         ElementsLocations element = new ElementsLocations();
         Functions method = new Functions();
         DriverInstance instance = new DriverInstance();
-
-        //Opens temporary e-mail page, waits to load and copies mail name to String.
-
-        instance.openTemporaryMailPage();
-        instance.waitUntilPageLoad(By.id("mail"));
-        String tempMail = method.copyTempMail();
 
 
         //Opens testing page, waits to load.
@@ -28,12 +22,12 @@ public class Register {
 
         element.getMyApart().click();
         instance.waitUntilPageLoad(By.id("new_email"));
-        element.getEmailField().sendKeys(tempMail);
+        element.getEmailField().sendKeys(transferMail);
         element.getRegisterButton().click();
 
-        String randomPass = method.getRandomPassword(15);
-        element.getPassword2().sendKeys(randomPass);
-        element.getConfirmedPassword2().sendKeys(randomPass);
+
+        element.getPassword2().sendKeys(transferPass);
+        element.getConfirmedPassword2().sendKeys(transferPass);
         method.randomClick(element.getTytuł());
         element.getImię().sendKeys(method.getRandomString(10));
         element.getNazwisko().sendKeys(method.getRandomString(10));
@@ -46,6 +40,7 @@ public class Register {
         element.getRegulamin().click();
         element.getNewsleter().click();
         element.getNastepny1().click();
+
 
     }
 }
