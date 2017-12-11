@@ -1,4 +1,4 @@
-package Tolls;
+package Tools;
 
 import demoqa.com.Main;
 import org.openqa.selenium.By;

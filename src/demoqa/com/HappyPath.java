@@ -1,8 +1,8 @@
 package demoqa.com;
 
-import Tolls.DriverInstance;
-import Tolls.ElementsLocations;
-import Tolls.Functions;
+import Tools.DriverInstance;
+import Tools.ElementsLocations;
+import Tools.Functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 

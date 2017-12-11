@@ -22,7 +22,7 @@ public class Main {
         String transferMail = method.copyTempMail();
         String transferPass = method.getRandomPassword(15);
 
-        method.addMailPassToFile(transferMail, transferPass);
+
 
         register.register(transferMail, transferPass);
         instance.waitUntilPageLoad(By.id("more-secondrow"));
@@ -30,7 +30,6 @@ public class Main {
         loging.loging(transferMail, transferPass);
         changeProfilesFields.changeProfileFields();
         deleteAccount.deleteAccount();
-        method.getMailPassFromFile();
 
 
 

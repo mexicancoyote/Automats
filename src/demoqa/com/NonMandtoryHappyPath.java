@@ -1,7 +1,7 @@
 package demoqa.com;
 
-import Tolls.ElementsLocations;
-import Tolls.Functions;
+import Tools.ElementsLocations;
+import Tools.Functions;
 
 import java.awt.*;
 

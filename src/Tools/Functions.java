@@ -1,14 +1,16 @@
-package Tolls;
+package Tools;
 
-import apart.pl.Main;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.*;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Functions {
 
@@ -93,7 +95,15 @@ public class Functions {
             System.out.println("Something goes wrong");
         }
     }
-    public String copyTempMail (){
+    //Opens temporary e-mail page, waits to load and copies mail name to String.
+
+    public String copyTempMail () throws InterruptedException {
+
+
+        instance.openTemporaryMailPage();
+        instance.waitUntilPageLoad(By.id("mail"));
+
+
         String temporaryMail = element.getTemporaryMail().getAttribute("value");
         return temporaryMail;
     }
@@ -101,4 +111,6 @@ public class Functions {
     public void logOut (){
         element.getLogOut().click();
     }
+
+
 }
